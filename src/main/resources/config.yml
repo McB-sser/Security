@@ -1,0 +1,41 @@
+vote:
+  duration-seconds: 600
+  min-voters: 3
+  quorum-percent: 0.5
+  quorum-min-karma: 3
+  kick-ban-minutes: 5
+  ban-duration-hours: 24
+  initiator-cooldown-seconds: 300
+karma:
+  base-hours-per-point: 24
+  # Exponentielle Strafdauer fuer negatives Karma: multiplier = 2^(abs(karma)/step), gedeckelt.
+  negative-scaling:
+    step: 10
+    max-multiplier: 32
+  rewards:
+    vote-participation: 1
+    successful-vote-starter: 1
+  penalties:
+    offensive-mute: 3
+    spam-mute: 2
+    vote-kick: 5
+    vote-ban: 20
+chat:
+  mute-minutes-offensive: 5
+  spam-window-seconds: 20
+  spam-message-limit: 6
+  spam-mute-minutes: 2
+  max-caps-ratio: 0.8
+  blocked-patterns:
+    - nazi
+    - hitler
+    - heilhitler
+    - faschist
+    - faschismus
+    - fascho
+    - volksverhetz
+    - hurensohn
+    - missgeburt
+    - fotze
+    - spast
+    - bastard

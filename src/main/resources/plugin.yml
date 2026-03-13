@@ -1,0 +1,26 @@
+﻿name: SecurityPlugin
+version: 1.0-SNAPSHOT
+main: de.mcbesser.security.SecurityPlugin
+api-version: '1.20'
+authors: [Codex]
+description: Weighted community moderation plugin
+commands:
+  votekick:
+    description: Startet eine gewichtete VoteKick-Abstimmung
+    usage: /votekick <spieler>
+  voteban:
+    description: Startet eine gewichtete VoteBan-Abstimmung
+    usage: /voteban <spieler>
+  securityvote:
+    description: Stimmt fuer oder gegen eine laufende Abstimmung (Fallback zu Klick-Buttons)
+    usage: /securityvote <yes|no> <spieler> [kick|ban]
+    aliases: [svote]
+  securitystatus:
+    description: Zeigt aktive Sicherheitsabstimmungen und Werte
+    usage: /securitystatus [spieler]
+  karmalist:
+    description: Zeigt die Karma-Topliste
+    usage: /karmalist [seite]
+permissions:
+  securityplugin.use:
+    default: true
