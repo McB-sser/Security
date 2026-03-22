@@ -35,7 +35,7 @@ Das benoetigte Quorum orientiert sich an den aktuell online befindlichen Spieler
 Das Plugin ueberwacht den Chat und reagiert automatisch auf problematisches Verhalten:
 
 - Spam/Flood: Zu viele Nachrichten in kurzer Zeit fuehren zu einem temporaeren Mute.
-- Wiederholte Nachrichten: Wenn dieselbe normalisierte Nachricht direkt erneut geschickt wird, gilt das ebenfalls als Spam.
+- Wiederholte Nachrichten: Wenn dieselbe normalisierte Nachricht innerhalb eines kurzen Cooldowns erneut geschickt wird, gilt das ebenfalls als Spam.
 - Caps-Abuse: Nachrichten mit uebermaessig vielen Grossbuchstaben werden blockiert.
 - Beleidigende oder extremistische Begriffe: Das Plugin prueft den Chat gegen eine konfigurierbare Liste problematischer Woerter und Muster.
 
@@ -232,6 +232,7 @@ Wichtige Bereiche:
 - `mute-minutes-offensive`: Basisdauer fuer Mutes wegen problematischer Sprache
 - `spam-window-seconds`: Zeitfenster fuer die Spam-Erkennung
 - `spam-message-limit`: Anzahl erlaubter Nachrichten im Zeitfenster
+- `duplicate-message-cooldown-seconds`: Zeitraum, in dem identische normalisierte Nachrichten als Spam zaehlen
 - `spam-mute-minutes`: Basisdauer fuer Spam-Mutes
 - `max-caps-ratio`: Ab welchem Verhaeltnis Grossbuchstaben als Caps-Abuse gelten
 - `blocked-patterns`: Liste der geblockten Begriffe und Muster

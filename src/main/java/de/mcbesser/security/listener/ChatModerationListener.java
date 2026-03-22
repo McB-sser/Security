@@ -26,7 +26,7 @@ public final class ChatModerationListener implements Listener {
     private final SmartWordFilter smartWordFilter;
     private final PlainTextComponentSerializer serializer = PlainTextComponentSerializer.plainText();
     private final Map<UUID, Deque<Long>> messageTimes = new ConcurrentHashMap<>();
-    private final Map<UUID, String> lastNormalizedMessages = new ConcurrentHashMap<>();
+    private final Map<UUID, MessageSnapshot> lastNormalizedMessages = new ConcurrentHashMap<>();
 
     public ChatModerationListener(
             SecurityPlugin plugin,
@@ -86,6 +86,7 @@ public final class ChatModerationListener implements Listener {
         long now = System.currentTimeMillis();
         long windowMs = Math.max(5L, plugin.getConfig().getLong("chat.spam-window-seconds", 20L)) * 1000L;
         int limit = Math.max(3, plugin.getConfig().getInt("chat.spam-message-limit", 6));
+        long duplicateCooldownMs = Math.max(1L, plugin.getConfig().getLong("chat.duplicate-message-cooldown-seconds", 30L)) * 1000L;
 
         Deque<Long> times = messageTimes.computeIfAbsent(uuid, k -> new ArrayDeque<>());
         synchronized (times) {
@@ -99,8 +100,21 @@ public final class ChatModerationListener implements Listener {
         }
 
         String normalized = smartWordFilter.normalizeForComparison(message);
-        String last = lastNormalizedMessages.put(uuid, normalized);
-        return last != null && !normalized.isBlank() && normalized.equals(last);
+        MessageSnapshot last = lastNormalizedMessages.get(uuid);
+        if (normalized.isBlank()) {
+            lastNormalizedMessages.put(uuid, new MessageSnapshot(normalized, now, 1));
+            return false;
+        }
+
+        int repeatCount = 1;
+        if (last != null
+                && normalized.equals(last.normalizedMessage())
+                && now - last.timestamp() <= duplicateCooldownMs) {
+            repeatCount = last.repeatCount() + 1;
+        }
+
+        lastNormalizedMessages.put(uuid, new MessageSnapshot(normalized, now, repeatCount));
+        return repeatCount >= 3;
     }
 
     private boolean hasExcessiveCaps(String message) {
@@ -136,5 +150,8 @@ public final class ChatModerationListener implements Listener {
 
     private void notifyPlayer(Player player, String message) {
         Bukkit.getScheduler().runTask(plugin, () -> player.sendMessage("§6[Security] " + message));
+    }
+
+    private record MessageSnapshot(String normalizedMessage, long timestamp, int repeatCount) {
     }
 }

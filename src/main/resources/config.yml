@@ -24,6 +24,7 @@ chat:
   mute-minutes-offensive: 5
   spam-window-seconds: 20
   spam-message-limit: 6
+  duplicate-message-cooldown-seconds: 30
   spam-mute-minutes: 2
   max-caps-ratio: 0.8
   blocked-patterns:
