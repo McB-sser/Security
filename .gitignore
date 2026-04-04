@@ -1,5 +1,6 @@
 # Maven build output
 /target/
+/.cp.txt
 /dependency-reduced-pom.xml
 
 # Java artifacts
