@@ -1,4 +1,4 @@
-package de.mcbesser.security.moderation;
+﻿package de.mcbesser.security.moderation;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
@@ -60,10 +60,10 @@ public final class SmartWordFilter {
             return "";
         }
         String s = input.toLowerCase(Locale.ROOT)
-                .replace("ä", "ae")
-                .replace("ö", "oe")
-                .replace("ü", "ue")
-                .replace("ß", "ss");
+                .replace("\u00e4", "ae")
+                .replace("\u00f6", "oe")
+                .replace("\u00fc", "ue")
+                .replace("\u00df", "ss");
         s = Normalizer.normalize(s, Normalizer.Form.NFD);
         s = DIACRITICS.matcher(s).replaceAll("");
 
@@ -80,10 +80,10 @@ public final class SmartWordFilter {
             return "";
         }
         String s = input.toLowerCase(Locale.ROOT)
-                .replace("ä", "ae")
-                .replace("ö", "oe")
-                .replace("ü", "ue")
-                .replace("ß", "ss");
+                .replace("\u00e4", "ae")
+                .replace("\u00f6", "oe")
+                .replace("\u00fc", "ue")
+                .replace("\u00df", "ss");
         s = Normalizer.normalize(s, Normalizer.Form.NFD);
         s = DIACRITICS.matcher(s).replaceAll("");
 

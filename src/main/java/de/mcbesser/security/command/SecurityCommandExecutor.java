@@ -1,4 +1,4 @@
-package de.mcbesser.security.command;
+﻿package de.mcbesser.security.command;
 
 import de.mcbesser.security.storage.PlayerStatsRepository;
 import de.mcbesser.security.vote.VoteManager;
@@ -31,7 +31,7 @@ public final class SecurityCommandExecutor implements CommandExecutor, TabComple
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (!(sender instanceof Player player)) {
-            sender.sendMessage("Nur Spieler koennen diesen Befehl nutzen.");
+            sender.sendMessage("Nur Spieler k\u00f6nnen diesen Befehl nutzen.");
             return true;
         }
 
@@ -131,7 +131,7 @@ public final class SecurityCommandExecutor implements CommandExecutor, TabComple
 
         player.sendMessage("§6[Security] §eKarma-Topliste Seite " + page + "/" + totalPages);
         if (all.isEmpty()) {
-            player.sendMessage("§7Keine Eintraege vorhanden.");
+            player.sendMessage("§7Keine Eintr\u00e4ge vorhanden.");
             return true;
         }
 

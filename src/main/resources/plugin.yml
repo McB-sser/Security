@@ -12,7 +12,7 @@ commands:
     description: Startet eine gewichtete VoteBan-Abstimmung
     usage: /voteban <spieler>
   securityvote:
-    description: Stimmt fuer oder gegen eine laufende Abstimmung (Fallback zu Klick-Buttons)
+    description: Stimmt f\u00fcr oder gegen eine laufende Abstimmung (Fallback zu Klick-Buttons)
     usage: /securityvote <yes|no> <spieler> [kick|ban]
     aliases: [svote]
   securitystatus:

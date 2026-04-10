@@ -1,4 +1,4 @@
-package de.mcbesser.security.vote;
+﻿package de.mcbesser.security.vote;
 
 import de.mcbesser.security.storage.PlayerStatsRepository;
 import de.mcbesser.security.storage.SanctionRepository;
@@ -38,7 +38,7 @@ public final class VoteManager {
             return "Du kannst nicht gegen dich selbst abstimmen lassen.";
         }
         if (sanctionRepository.isBanned(target.getUniqueId())) {
-            return "Zielspieler ist bereits temporaer gebannt.";
+            return "Zielspieler ist bereits tempor\u00e4r gebannt.";
         }
 
         long now = System.currentTimeMillis();
@@ -49,7 +49,7 @@ public final class VoteManager {
 
         String key = type.name() + ":" + target.getUniqueId();
         if (activeVotes.containsKey(key)) {
-            return "Es laeuft bereits eine " + type.displayName() + "-Abstimmung gegen " + target.getName() + ".";
+            return "Es l\u00e4uft bereits eine " + type.displayName() + "-Abstimmung gegen " + target.getName() + ".";
         }
 
         int minVoters = Math.max(3, plugin.getConfig().getInt("vote.min-voters", 3));
@@ -84,9 +84,9 @@ public final class VoteManager {
         startCooldowns.put(starter.getUniqueId(), now + cooldownSeconds * 1000L);
 
         broadcast("Â§6[Security] Â§e" + starter.getName() + " startet " + type.displayName() + " gegen Â§c" + target.getName() + "Â§e.");
-        broadcast("Â§6[Security] Â§7Noetig: Â§b" + fmt(requiredPoints) + " Karma-Ja-PunkteÂ§7, Â§b" + minVoters + " Ja-SpielerÂ§7, " +
+        broadcast("Â§6[Security] Â§7N\u00f6tig: Â§b" + fmt(requiredPoints) + " Karma-Ja-PunkteÂ§7, Â§b" + minVoters + " Ja-SpielerÂ§7, " +
                 "Â§b" + requiredParticipants + " Teilnehmer gesamtÂ§7 (50% von " + quorumEligibleOnline + " karma-berechtigten Anwesenden, min Karma " + quorumMinKarma + ").");
-        broadcast("Â§6[Security] Â§7Hinweis: Neue Spieler (wenige Joins / wenig Spielzeit) haben absichtlich stark reduzierte Vote-Power.");
+        broadcast("Â§6[Security] Â§7Hinweis: Ne\u00fc Spieler (wenige Joins / wenig Spielzeit) haben absichtlich stark reduzierte Vote-Power.");
         sendVoteButtons(session);
         broadcastProgress(session);
         resolveIfPassed(session);
@@ -108,7 +108,7 @@ public final class VoteManager {
                 }
             }
             if (chosen == null) {
-                return "Keine passende Abstimmung fuer Typ " + typeHint.name().toLowerCase() + " gefunden.";
+                return "Keine passende Abstimmung f\u00fcr Typ " + typeHint.name().toLowerCase() + " gefunden.";
             }
         } else if (matches.size() == 1) {
             chosen = matches.get(0);
@@ -120,7 +120,7 @@ public final class VoteManager {
         boolean firstVote = chosen.castVote(voter.getUniqueId(), weight, support);
         rewardVoteParticipationIfEligible(voter, firstVote);
 
-        broadcast("Â§6[Security] Â§e" + voter.getName() + " stimmt " + (support ? "Â§aJA" : "Â§cNEIN") + "Â§e fuer " +
+        broadcast("Â§6[Security] Â§e" + voter.getName() + " stimmt " + (support ? "Â§aJA" : "Â§cNEIN") + "Â§e f\u00fcr " +
                 chosen.getType().displayName() + " gegen Â§c" + chosen.getTargetName() + "Â§e (Karma-Gewicht " + fmt(weight) + ").");
         broadcastProgress(chosen);
         resolveIfPassed(chosen);
@@ -215,13 +215,13 @@ public final class VoteManager {
         }
 
         broadcast("Â§6[Security] Â§c" + session.getTargetName() + " wurde durch " + session.getType().displayName() +
-                " sanktioniert. Dauer: Â§e" + formatDuration(duration.toMillis()) + "Â§c." +
+                " sanktioniert. Da\u00fcr: Â§e" + formatDuration(duration.toMillis()) + "Â§c." +
                 (sanctionMultiplier > 1.0D ? " (x" + fmt(sanctionMultiplier) + " wegen negativem Karma)" : "") +
                 (karmaPenalty > 0 ? " Karma -" + karmaPenalty + "." : ""));
 
         Player online = Bukkit.getPlayer(session.getTargetUuid());
         if (online != null) {
-            String kickMsg = "Â§cCommunity-Sanktion: " + reason + "\nÂ§7Dauer: " + formatDuration(duration.toMillis());
+            String kickMsg = "Â§cCommunity-Sanktion: " + reason + "\nÂ§7Da\u00fcr: " + formatDuration(duration.toMillis());
             Bukkit.getScheduler().runTask(plugin, () -> online.kickPlayer(kickMsg));
         }
     }

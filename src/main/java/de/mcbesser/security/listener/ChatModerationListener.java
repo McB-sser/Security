@@ -1,4 +1,4 @@
-package de.mcbesser.security.listener;
+﻿package de.mcbesser.security.listener;
 
 import de.mcbesser.security.SecurityPlugin;
 import de.mcbesser.security.moderation.SmartWordFilter;
@@ -60,7 +60,7 @@ public final class ChatModerationListener implements Listener {
             Duration muteDuration = scaleDuration(Duration.ofMinutes(minutes), multiplier);
             sanctionRepository.applyTempMute(uuid, muteDuration, "Spam/Flood");
             adjustKarma(uuid, player.getName(), -Math.max(0, plugin.getConfig().getInt("karma.penalties.spam-mute", 2)), "Spam/Flood");
-            notifyPlayer(player, "§cSpam erkannt. Mute fuer " + Math.max(1, Math.round(muteDuration.toMinutes())) + " Minuten.");
+            notifyPlayer(player, "§cSpam erkannt. Mute f\u00fcr " + Math.max(1, Math.round(muteDuration.toMinutes())) + " Minuten.");
             return;
         }
 

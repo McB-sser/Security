@@ -1,4 +1,4 @@
-vote:
+﻿vote:
   duration-seconds: 600
   min-voters: 3
   quorum-percent: 0.5
