@@ -1,4 +1,4 @@
-﻿package de.mcbesser.security.moderation;
+package de.mcbesser.security.moderation;
 
 import java.text.Normalizer;
 import java.util.ArrayList;

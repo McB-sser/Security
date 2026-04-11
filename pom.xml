@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
     <name>SecurityPlugin</name>
     <properties>
-        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.release>25</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <repositories>
@@ -21,7 +21,7 @@
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.20.6-R0.1-SNAPSHOT</version>
+            <version>[26.1.1.build,)</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

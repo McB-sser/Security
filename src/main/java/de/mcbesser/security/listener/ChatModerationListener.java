@@ -1,4 +1,4 @@
-﻿package de.mcbesser.security.listener;
+package de.mcbesser.security.listener;
 
 import de.mcbesser.security.SecurityPlugin;
 import de.mcbesser.security.moderation.SmartWordFilter;

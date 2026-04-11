@@ -1,4 +1,4 @@
-﻿package de.mcbesser.security.vote;
+package de.mcbesser.security.vote;
 
 import de.mcbesser.security.storage.PlayerStatsRepository;
 import de.mcbesser.security.storage.SanctionRepository;
