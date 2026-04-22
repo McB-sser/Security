@@ -37,7 +37,7 @@ public final class SecurityPlugin extends JavaPlugin {
         getServer().getScheduler().runTaskTimer(this, () -> {
             sanctionRepository.cleanupExpired();
             voteManager.expireVotes();
-        }, 20L, 20L * 15);
+        }, 47L, 20L * 15);
     }
 
     @Override
